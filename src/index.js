@@ -1,3 +1,3 @@
-import allMoves from "./allMoves.js";
-
-console.log(allMoves([0, 7]));
+import createGraph from "./createGraph.js";
+let all = createGraph();
+console.log(all[3][3]);
