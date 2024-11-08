@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "projecttemplate",
   "version": "1.0.0",
   "description": "",
