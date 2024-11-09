@@ -36,7 +36,11 @@ function knightMoves(arrOne, arrtwo) {
     }
     front += 1;
   }
-  return allFastestRoutes;
+  const steps = allFastestRoutes[0].length - 1;
+  console.log(`You made it in ${steps} moves! Here's your path(s)`);
+  for (let i = 0; i < allFastestRoutes.length; i += 1) {
+    console.log(allFastestRoutes[i]);
+  }
 }
 
-console.log(knightMoves([0, 0], [7, 7]));
+knightMoves([3, 3], [4, 3]);
