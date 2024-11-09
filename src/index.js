@@ -7,24 +7,36 @@ function knightMoves(arrOne, arrtwo) {
   q.push({ vertex: arrOne, pastVertices: [] });
 
   let front = 0;
+  const allFastestRoutes = [];
   while (front < q.length) {
     const currentVertex = q[front].vertex;
 
     if (JSON.stringify(currentVertex) === JSON.stringify(arrtwo)) {
-      console.log(q[front].pastVertices);
-      console.log(currentVertex);
-      return 'found';
+      let arr = [];
+      arr = arr.concat(q[front].pastVertices);
+      arr.push(currentVertex);
+      allFastestRoutes.push(arr);
     }
-    const al = all[currentVertex[0]][currentVertex[1]];
-    const newPastVertices = [...q[front].pastVertices];
-    newPastVertices.push(currentVertex);
-    for (let i = 0; i < al.length; i += 1) {
-      q.push({ vertex: al[i], pastVertices: newPastVertices });
-    }
+    if (allFastestRoutes.length === 0) {
+      const al = all[currentVertex[0]][currentVertex[1]];
+      const newPastVertices = [...q[front].pastVertices];
+      newPastVertices.push(currentVertex);
 
+      for (let i = 0; i < al.length; i += 1) {
+        let go = true;
+        for (let j = 0; j < newPastVertices.length; j += 1) {
+          if (JSON.stringify(al[i]) === JSON.stringify(newPastVertices[j])) {
+            go = false;
+          }
+        }
+        if (go === true) {
+          q.push({ vertex: al[i], pastVertices: newPastVertices });
+        }
+      }
+    }
     front += 1;
   }
-  return undefined;
+  return allFastestRoutes;
 }
 
-knightMoves([0, 0], [7, 3]);
+console.log(knightMoves([0, 0], [7, 7]));
